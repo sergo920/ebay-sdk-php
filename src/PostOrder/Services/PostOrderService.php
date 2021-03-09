@@ -547,7 +547,7 @@ class PostOrderService extends \DTS\eBaySDK\PostOrder\Services\PostOrderBaseServ
         ],
         'GetReturnShippingLabel' => [
             'method' => 'GET',
-            'resource' => 'return/{returnId}/get_shipping_label',
+            'resource' => 'return/{return_id}/get_shipping_label',
             'responseClass' => '\DTS\eBaySDK\PostOrder\Types\GetReturnShippingLabelRestResponse',
             'params' => [
                 'return_id' => [
