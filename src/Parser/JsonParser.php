@@ -13,8 +13,12 @@ class JsonParser
         self::assignProperties($object, $properties);
     }
 
-    private static function assignProperties(\DTS\eBaySDK\Types\BaseType $object, array $properties)
+    private static function assignProperties(\DTS\eBaySDK\Types\BaseType $object, $properties)
     {
+        if (!is_array($properties)) {
+            $properties = [$properties];
+        }
+
         foreach ($properties as $property => $value) {
             $propertyMeta = $object->elementMeta($property);
             // Property in the JSON may not exist as a property name in the class.
