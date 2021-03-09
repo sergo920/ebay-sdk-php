@@ -42,19 +42,19 @@ class PostOrderBaseService extends \DTS\eBaySDK\Services\BaseRestService
         $definitions = parent::getConfigDefinitions();
 
         return $definitions + [
-            'apiVersion' => [
-                'valid' => ['string'],
-                'default' => \DTS\eBaySDK\PostOrder\Services\PostOrderService::API_VERSION,
-                'required' => true
-            ],
-            'authToken' => [
-                'valid' => ['string'],
-                'required' => true
-            ],
-            'marketplaceId' => [
-                'valid' => ['string']
-            ]
-        ];
+                'apiVersion' => [
+                    'valid' => ['string'],
+                    'default' => \DTS\eBaySDK\PostOrder\Services\PostOrderService::API_VERSION,
+                    'required' => true
+                ],
+                'authToken' => [
+                    'valid' => ['string'],
+                    'required' => true
+                ],
+                'marketplaceId' => [
+                    'valid' => ['string']
+                ]
+            ];
     }
 
     /**
@@ -67,7 +67,7 @@ class PostOrderBaseService extends \DTS\eBaySDK\Services\BaseRestService
         $headers = [];
 
         // Add required headers first.
-        $headers[self::HDR_AUTH_TOKEN] = 'TOKEN '.$this->getConfig('authToken');
+        $headers[self::HDR_AUTH_TOKEN] = $this->getConfig('authToken');
 
         // Add optional headers.
         if ($this->getConfig('marketplaceId')) {
