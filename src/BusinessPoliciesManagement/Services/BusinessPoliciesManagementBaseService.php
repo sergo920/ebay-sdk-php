@@ -17,6 +17,11 @@ class BusinessPoliciesManagementBaseService extends \DTS\eBaySDK\Services\BaseSe
     const HDR_AUTH_TOKEN = 'X-EBAY-SOA-SECURITY-TOKEN';
 
     /**
+     * HTTP header constant. The Authentication Token that is used to validate the caller has permission to access the eBay servers.
+     */
+    const HDR_IAF_TOKEN = 'X-EBAY-SOA-SECURITY-IAFTOKEN';
+
+    /**
      * HTTP header constant. The global ID of the eBay site the request is for.
      */
     const HDR_GLOBAL_ID = 'X-EBAY-SOA-GLOBAL-ID';
@@ -44,19 +49,23 @@ class BusinessPoliciesManagementBaseService extends \DTS\eBaySDK\Services\BaseSe
         $definitions = parent::getConfigDefinitions();
 
         return $definitions + [
-            'apiVersion' => [
-                'valid' => ['string'],
-                'default' => \DTS\eBaySDK\BusinessPoliciesManagement\Services\BusinessPoliciesManagementService::API_VERSION
-            ],
-            'authToken' => [
-                'valid' => ['string'],
-                'required' => true
-            ],
-            'globalId' => [
-                'valid' => ['string'],
-                'required' => true
-            ]
-        ];
+                'apiVersion' => [
+                    'valid' => ['string'],
+                    'default' => \DTS\eBaySDK\BusinessPoliciesManagement\Services\BusinessPoliciesManagementService::API_VERSION
+                ],
+                'authToken' => [
+                    'valid' => ['string'],
+                    'required' => false
+                ],
+                'iafToken' => [
+                    'valid' => ['string'],
+                    'required' => false
+                ],
+                'globalId' => [
+                    'valid' => ['string'],
+                    'required' => true
+                ]
+            ];
     }
 
     /**
@@ -71,7 +80,12 @@ class BusinessPoliciesManagementBaseService extends \DTS\eBaySDK\Services\BaseSe
         $headers = [];
 
         // Add required headers first.
-        $headers[self::HDR_AUTH_TOKEN] = $this->getConfig('authToken');
+        $authToken = $this->getConfig('authToken');
+        if (!empty($authToken)) {
+            $headers[self::HDR_AUTH_TOKEN] = $this->getConfig('authToken');
+        } else {
+            $headers[self::HDR_IAF_TOKEN] = $this->getConfig('iafToken');
+        }
         $headers[self::HDR_GLOBAL_ID] = $this->getConfig('globalId');
         $headers[self::HDR_OPERATION_NAME] = $operationName;
 
