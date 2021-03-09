@@ -14,6 +14,7 @@ namespace DTS\eBaySDK\Trading\Types;
  *
  * @property string $ApplicationData
  * @property boolean $AutoPay
+ * @property boolean $PrivateListing
  * @property \DTS\eBaySDK\Trading\Types\PaymentDetailsType $PaymentDetails
  * @property \DTS\eBaySDK\Trading\Types\BiddingDetailsType $BiddingDetails
  * @property boolean $MotorsGermanySearchable
@@ -156,6 +157,12 @@ class ItemType extends \DTS\eBaySDK\Types\BaseType
             'repeatable' => false,
             'attribute' => false,
             'elementName' => 'AutoPay'
+        ],
+        'PrivateListing' => [
+            'type' => 'boolean',
+            'repeatable' => false,
+            'attribute' => false,
+            'elementName' => 'PrivateListing'
         ],
         'PaymentDetails' => [
             'type' => 'DTS\eBaySDK\Trading\Types\PaymentDetailsType',
