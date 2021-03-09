@@ -590,7 +590,8 @@ class BaseType implements JmesPathableObjectInterface
         } elseif (is_bool($value)) {
             return $value ? 'true' : 'false';
         } else {
-            return htmlspecialchars($value, ENT_QUOTES, 'UTF-8', true);
+            if (is_array($value)) $value = $value[0] ?? '';
+            return htmlspecialchars((string)$value, ENT_QUOTES, 'UTF-8', true);
         }
     }
 
