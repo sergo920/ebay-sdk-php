@@ -474,7 +474,7 @@ class BaseType implements JmesPathableObjectInterface
      *
      * @throws \DTS\eBaySDK\Exceptions\InvalidPropertyTypeException If the value is the wrong type for the property.
      */
-    private static function ensurePropertyType($class, $name, $value)
+    private static function ensurePropertyType($class, $name, &$value)
     {
         $isValid = false;
         $info = self::propertyInfo($class, $name);
@@ -494,6 +494,10 @@ class BaseType implements JmesPathableObjectInterface
 
         if (!$isValid) {
             $expectedType = $info['type'];
+            if ($actualType === 'integer' and $expectedType === 'double') {
+                $value = floatval($value);
+                return;
+            }
             throw new Exceptions\InvalidPropertyTypeException($name, $expectedType, $actualType);
         }
     }
