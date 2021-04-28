@@ -10,6 +10,8 @@ use DTS\eBaySDK\StatusCodeTrait;
  * User: sergo
  * Date: 4/27/21
  * Time: 12:54 PM
+ * @property string $refundId
+ * @property \DTS\eBaySDK\Fulfillment\Enums\RefundStatusEnum $refundStatus
  */
 class IssueRefundRestResponse extends \DTS\eBaySDK\Types\BaseType
 {
@@ -31,6 +33,18 @@ class IssueRefundRestResponse extends \DTS\eBaySDK\Types\BaseType
             'repeatable' => true,
             'attribute' => false,
             'elementName' => 'warnings'
+        ],
+        'refundId' => [
+            'type' => 'string',
+            'repeatable' => false,
+            'attribute' => false,
+            'elementName' => 'refundId'
+        ],
+        'refundStatus' => [
+            'type' => 'string',
+            'repeatable' => false,
+            'attribute' => false,
+            'elementName' => 'refundStatus'
         ]
     ];
 
