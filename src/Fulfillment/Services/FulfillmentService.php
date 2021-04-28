@@ -84,6 +84,17 @@ class FulfillmentService extends \DTS\eBaySDK\Fulfillment\Services\FulfillmentBa
                     'required' => true
                 ]
             ]
+        ],
+        'IssueRefund' => [
+            'method' => 'POST',
+            'resource' => 'order/{orderId}/issue_refund',
+            'responseClass' => '\DTS\eBaySDK\Fulfillment\Types\IssueRefundRestResponse',
+            'params' => [
+                'orderId' => [
+                    'valid' => ['string'],
+                    'required' => true
+                ]
+            ]
         ]
     ];
 
@@ -93,6 +104,24 @@ class FulfillmentService extends \DTS\eBaySDK\Fulfillment\Services\FulfillmentBa
     public function __construct(array $config = [])
     {
         parent::__construct($config);
+    }
+    
+    /**
+     * @param \DTS\eBaySDK\Fulfillment\Types\IssueRefundRestRequest $request
+     * @return \DTS\eBaySDK\Fulfillment\Types\IssueRefundRestResponse
+     */
+    public function issueRefund(\DTS\eBaySDK\Fulfillment\Types\IssueRefundRestRequest $request)
+    {
+        return $this->issueRefundAsync($request)->wait();
+    }
+    
+    /**
+     * @param \DTS\eBaySDK\Fulfillment\Types\IssueRefundRestRequest $request
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function issueRefundAsync(\DTS\eBaySDK\Fulfillment\Types\IssueRefundRestRequest $request)
+    {
+        return $this->callOperationAsync('IssueRefund', $request);
     }
 
     /**
