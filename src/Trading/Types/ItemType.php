@@ -164,6 +164,12 @@ class ItemType extends \DTS\eBaySDK\Types\BaseType
             'attribute' => false,
             'elementName' => 'PrivateListing'
         ],
+        'VideoDetails' => [
+            'type' => 'DTS\eBaySDK\Trading\Types\VideoDetailsType',
+            'repeatable' => false,
+            'attribute' => false,
+            'elementName' => 'VideoDetails'
+        ],
         'PaymentDetails' => [
             'type' => 'DTS\eBaySDK\Trading\Types\PaymentDetailsType',
             'repeatable' => false,
