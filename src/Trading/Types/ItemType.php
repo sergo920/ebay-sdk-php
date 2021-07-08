@@ -17,6 +17,7 @@ namespace DTS\eBaySDK\Trading\Types;
  * @property boolean $PrivateListing
  * @property \DTS\eBaySDK\Trading\Types\PaymentDetailsType $PaymentDetails
  * @property \DTS\eBaySDK\Trading\Types\BiddingDetailsType $BiddingDetails
+ * @property \DTS\eBaySDK\Trading\Types\VideoDetailsType $VideoDetails
  * @property boolean $MotorsGermanySearchable
  * @property \DTS\eBaySDK\Trading\Enums\BuyerProtectionCodeType $BuyerProtection
  * @property \DTS\eBaySDK\Trading\Types\AmountType $BuyItNowPrice
