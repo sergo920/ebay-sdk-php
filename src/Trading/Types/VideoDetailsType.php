@@ -12,7 +12,7 @@ namespace DTS\eBaySDK\Trading\Types;
 
 /**
  *
- * @property string $VideoID
+ * @property string[] $VideoID
  */
 class VideoDetailsType extends \DTS\eBaySDK\Types\BaseType
 {
@@ -22,7 +22,7 @@ class VideoDetailsType extends \DTS\eBaySDK\Types\BaseType
     private static $propertyTypes = [
         'VideoID' => [
             'type' => 'string',
-            'repeatable' => false,
+            'repeatable' => true,
             'attribute' => false,
             'elementName' => 'VideoID'
         ]
