@@ -6,6 +6,11 @@ namespace DTS\eBaySDK\Shopping\Services;
  */
 class ShoppingBaseService extends \DTS\eBaySDK\Services\BaseService
 {
+     /**
+     * HTTP header constant. The OAUTH Authentication Token that is used to validate the caller has permission to access the eBay servers.
+     */
+    const HDR_AUTHORIZATION = 'X-EBAY-API-IAF-TOKEN';
+    
     /**
      * HTTP header constant. Your affiliate ID.
      */
@@ -72,6 +77,9 @@ class ShoppingBaseService extends \DTS\eBaySDK\Services\BaseService
                 'default' => \DTS\eBaySDK\Shopping\Services\ShoppingService::API_VERSION,
                 'required' => true
             ],
+            'authorization' => [
+                'valid' => ['string']
+            ],
             'siteId' => [
                 'valid' => ['int', 'string']
             ],
@@ -105,6 +113,10 @@ class ShoppingBaseService extends \DTS\eBaySDK\Services\BaseService
         // Take into account siteId is an integer that can be set to zero.
         if ($this->getConfig('siteId') !== null) {
             $headers[self::HDR_SITE_ID] = $this->getConfig('siteId');
+        }
+        
+        if ($this->getConfig('authorization')) {
+            $headers[self::HDR_AUTHORIZATION] = $this->getConfig('authorization');
         }
 
         if ($this->getConfig('affiliateUserId')) {
