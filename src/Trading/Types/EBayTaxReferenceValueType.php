@@ -14,7 +14,7 @@ namespace DTS\eBaySDK\Trading\Types;
  *
  * @property string $eBayTaxReferenceValue
  */
-class eBayReferenceType extends \DTS\eBaySDK\Types\BaseType
+class EBayTaxReferenceValueType extends \DTS\eBaySDK\Types\BaseType
 {
     /**
      * @var array Properties belonging to objects of this class.
@@ -28,7 +28,7 @@ class eBayReferenceType extends \DTS\eBaySDK\Types\BaseType
         'name' => [
             'type' => 'string',
             'repeatable' => false,
-            'attribute' => false,
+            'attribute' => true,
             'attributeName' => 'name'
         ]
     ];
