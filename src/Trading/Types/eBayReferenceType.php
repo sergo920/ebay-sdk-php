@@ -20,11 +20,16 @@ class eBayReferenceType extends \DTS\eBaySDK\Types\BaseType
      * @var array Properties belonging to objects of this class.
      */
     private static $propertyTypes = [
-        'eBayTaxReferenceValue' => [
+        'value' => [
+            'type' => 'double',
+            'repeatable' => false,
+            'attribute' => false
+        ],
+        'name' => [
             'type' => 'string',
             'repeatable' => false,
             'attribute' => false,
-            'elementName' => 'eBayTaxReferenceValue'
+            'attributeName' => 'name'
         ]
     ];
 
