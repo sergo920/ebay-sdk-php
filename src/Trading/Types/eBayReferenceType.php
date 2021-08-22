@@ -21,7 +21,7 @@ class eBayReferenceType extends \DTS\eBaySDK\Types\BaseType
      */
     private static $propertyTypes = [
         'value' => [
-            'type' => 'double',
+            'type' => 'string',
             'repeatable' => false,
             'attribute' => false
         ],
