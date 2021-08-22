@@ -12,6 +12,7 @@ namespace DTS\eBaySDK\Trading\Types;
 
 /**
  *
+ * @property \DTS\eBaySDK\Trading\Types\TaxesType $eBayCollectAndRemitTaxes
  * @property \DTS\eBaySDK\Trading\Types\AmountType $AmountPaid
  * @property \DTS\eBaySDK\Trading\Types\AmountType $AdjustmentAmount
  * @property \DTS\eBaySDK\Trading\Types\AmountType $ConvertedAdjustmentAmount
@@ -130,6 +131,12 @@ class TransactionType extends \DTS\eBaySDK\Types\BaseType
             'repeatable' => false,
             'attribute' => false,
             'elementName' => 'CreatedDate'
+        ],
+        'eBayCollectAndRemitTaxes' => [
+            'type' => 'DTS\eBaySDK\Trading\Types\TaxesType',
+            'repeatable' => false,
+            'attribute' => false,
+            'elementName' => 'eBayCollectAndRemitTaxes'
         ],
         'DepositType' => [
             'type' => 'string',
