@@ -14,17 +14,12 @@ namespace DTS\eBaySDK\Trading\Types;
  *
  * @property string $eBayTaxReferenceValue
  */
-class EBayTaxReferenceValueType extends \DTS\eBaySDK\Types\BaseType
+class EBayTaxReferenceValueType extends \DTS\eBaySDK\Types\StringType
 {
     /**
      * @var array Properties belonging to objects of this class.
      */
     private static $propertyTypes = [
-        'value' => [
-            'type' => 'string',
-            'repeatable' => false,
-            'attribute' => false
-        ],
         'name' => [
             'type' => 'string',
             'repeatable' => false,
