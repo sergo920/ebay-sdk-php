@@ -27,11 +27,11 @@ class EscalateInquiryRequest extends \DTS\eBaySDK\Types\BaseType
             'attribute' => false,
             'elementName' => 'comments'
         ],
-        'escalationReason' => [
+        'escalateInquiryReason' => [
             'type' => 'string',
             'repeatable' => false,
             'attribute' => false,
-            'elementName' => 'escalationReason'
+            'elementName' => 'escalateInquiryReason'
         ]
     ];
 
