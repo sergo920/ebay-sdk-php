@@ -160,8 +160,7 @@ class MarketingService extends \DTS\eBaySDK\Marketing\Services\MarketingBaseServ
                     'valid' => ['string']
                 ],
                 'listing_ids' => [
-                    'valid' => ['string'],
-                    'required' => true
+                    'valid' => ['string']
                 ],
                 'offset' => [
                     'valid' => ['string']
