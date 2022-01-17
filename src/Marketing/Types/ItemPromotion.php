@@ -20,6 +20,7 @@ namespace DTS\eBaySDK\Marketing\Types;
  * @property string $name
  * @property \DTS\eBaySDK\Marketing\Enums\PromotionPriorityEnum $priority
  * @property string $promotionImageUrl
+ * @property \DTS\eBaySDK\Marketing\Enums\PromotionTypeEnum $promotionType
  * @property \DTS\eBaySDK\Marketing\Enums\PromotionStatusEnum $promotionStatus
  * @property string $startDate
  */
@@ -76,6 +77,12 @@ class ItemPromotion extends \DTS\eBaySDK\Types\BaseType
             'repeatable' => false,
             'attribute' => false,
             'elementName' => 'promotionImageUrl'
+        ],
+        'promotionType' => [
+            'type' => 'string',
+            'repeatable' => false,
+            'attribute' => false,
+            'elementName' => 'promotionType'
         ],
         'promotionStatus' => [
             'type' => 'string',
