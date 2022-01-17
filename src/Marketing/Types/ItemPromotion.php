@@ -18,6 +18,7 @@ namespace DTS\eBaySDK\Marketing\Types;
  * @property \DTS\eBaySDK\Marketing\Types\InventoryCriterion $inventoryCriterion
  * @property \DTS\eBaySDK\Marketing\Enums\MarketplaceIdEnum $marketplaceId
  * @property string $name
+ * @property boolean $applyDiscountToSingleItemOnly
  * @property \DTS\eBaySDK\Marketing\Enums\PromotionPriorityEnum $priority
  * @property string $promotionImageUrl
  * @property \DTS\eBaySDK\Marketing\Enums\PromotionTypeEnum $promotionType
@@ -30,6 +31,12 @@ class ItemPromotion extends \DTS\eBaySDK\Types\BaseType
      * @var array Properties belonging to objects of this class.
      */
     private static $propertyTypes = [
+        'applyDiscountToSingleItemOnly' => [
+            'type' => 'boolean',
+            'repeatable' => false,
+            'attribute' => false,
+            'elementName' => 'applyDiscountToSingleItemOnly'
+        ],
         'description' => [
             'type' => 'string',
             'repeatable' => false,
