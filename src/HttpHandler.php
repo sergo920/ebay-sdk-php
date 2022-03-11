@@ -34,7 +34,15 @@ class HttpHandler
      */
     public function __construct(ClientInterface $client = null)
     {
-        $this->client = $client ?: new Client(['curl' => [CURLOPT_SSLVERSION => CURL_SSLVERSION_TLSv1_2]]);
+        $this->client = $client ?: new Client([
+            'defaults' => [
+                'config' => [
+                    'curl' => [
+                        CURLOPT_SSLVERSION => CURL_SSLVERSION_TLSv1_2
+                    ]
+                ]
+            ]
+        ]);
     }
 
     /**
