@@ -61,6 +61,7 @@ class HttpHandler
             }
         }
 
+        $options['curl'] = [CURLOPT_SSLVERSION => CURL_SSLVERSION_TLSv1_2];
         return $this->client->sendAsync($request, $options);
     }
 }
