@@ -13,7 +13,6 @@ namespace DTS\eBaySDK\Trading\Types;
 /**
  *
  * @property string $CharityName
- * @property integer $CharityNumber
  * @property double $DonationPercent
  * @property string $CharityID
  * @property string $Mission
@@ -32,12 +31,6 @@ class CharityType extends \DTS\eBaySDK\Types\BaseType
             'repeatable' => false,
             'attribute' => false,
             'elementName' => 'CharityName'
-        ],
-        'CharityNumber' => [
-            'type' => 'integer',
-            'repeatable' => false,
-            'attribute' => false,
-            'elementName' => 'CharityNumber'
         ],
         'DonationPercent' => [
             'type' => 'double',
