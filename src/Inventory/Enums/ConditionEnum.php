@@ -23,4 +23,5 @@ class ConditionEnum
     const C_USED_EXCELLENT = 'USED_EXCELLENT';
     const C_USED_GOOD = 'USED_GOOD';
     const C_USED_VERY_GOOD = 'USED_VERY_GOOD';
+    const C_CERTIFIED_REFURBISHED = 'CERTIFIED_REFURBISHED';
 }
