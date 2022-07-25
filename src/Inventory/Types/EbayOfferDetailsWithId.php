@@ -81,6 +81,24 @@ class EbayOfferDetailsWithId extends \DTS\eBaySDK\Types\BaseType
             'repeatable' => false,
             'attribute' => false,
             'elementName' => 'tax'
+        ],
+        'hideBuyerDetails' => [
+            'type' => 'boolean',
+            'repeatable' => false,
+            'attribute' => false,
+            'elementName' => 'hideBuyerDetails'
+        ],
+        'includeCatalogProductDetails' => [
+            'type' => 'boolean',
+            'repeatable' => false,
+            'attribute' => false,
+            'elementName' => 'includeCatalogProductDetails'
+        ],
+        'listingDuration' => [
+            'type' => 'string',
+            'repeatable' => false,
+            'attribute' => false,
+            'elementName' => 'listingDuration'
         ]
     ];
 
