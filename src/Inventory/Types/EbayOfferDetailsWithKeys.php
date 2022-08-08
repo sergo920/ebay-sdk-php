@@ -97,6 +97,12 @@ class EbayOfferDetailsWithKeys extends \DTS\eBaySDK\Types\BaseType
             'attribute' => false,
             'elementName' => 'storeCategoryNames'
         ],
+        'includeCatalogProductDetails' => [
+            'type' => 'boolean',
+            'repeatable' => false,
+            'attribute' => false,
+            'elementName' => 'includeCatalogProductDetails'
+        ],
         'hideBuyerDetails' => [
             'type' => 'boolean',
             'repeatable' => false,
