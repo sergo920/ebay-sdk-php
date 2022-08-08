@@ -97,6 +97,12 @@ class EbayOfferDetailsWithKeys extends \DTS\eBaySDK\Types\BaseType
             'attribute' => false,
             'elementName' => 'storeCategoryNames'
         ],
+        'hideBuyerDetails' => [
+            'type' => 'boolean',
+            'repeatable' => false,
+            'attribute' => false,
+            'elementName' => 'hideBuyerDetails'
+        ],
         'tax' => [
             'type' => 'DTS\eBaySDK\Inventory\Types\Tax',
             'repeatable' => false,
