@@ -24,6 +24,7 @@ namespace DTS\eBaySDK\PostOrder\Types;
  * @property \DTS\eBaySDK\PostOrder\Types\OrderCancelLineItem[] $lineItems
  * @property \DTS\eBaySDK\PostOrder\Enums\MarketplaceIdEnum $marketplaceId
  * @property string $paymentStatus
+ * @property string $buyerLoginName
  * @property string $requestorType
  * @property \DTS\eBaySDK\PostOrder\Types\Amount $requestRefundAmount
  * @property \DTS\eBaySDK\PostOrder\Types\DateTime $sellerResponseDueDate
@@ -109,6 +110,12 @@ class CancelDetail extends \DTS\eBaySDK\Types\BaseType
             'repeatable' => false,
             'attribute' => false,
             'elementName' => 'paymentStatus'
+        ],
+        'buyerLoginName' => [
+            'type' => 'string',
+            'repeatable' => false,
+            'attribute' => false,
+            'elementName' => 'buyerLoginName'
         ],
         'requestorType' => [
             'type' => 'string',
