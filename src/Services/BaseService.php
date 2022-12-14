@@ -146,32 +146,11 @@ abstract class BaseService
     }
 
     /**
-     * Sends an asynchronous API request.
-     *
-     * @param string $name The name of the operation.
-     * @param \DTS\eBaySDK\Types\BaseType $request Request object containing the request information.
-     * @param string $responseClass The name of the PHP class that will be created from the XML response.
-     *
-     * @return \GuzzleHttp\Promise\PromiseInterface A promise that will be resolved with an object created from the XML response.
+     * GENERATE Signature
+     * @url https://developer.ebay.com/develop/guides/digital-signatures-for-apis
      */
-    protected function callOperationAsync($name, \DTS\eBaySDK\Types\BaseType $request, $responseClass)
+    private function generateSignature($headers, $url, $method, $body, $responseClass)
     {
-        $method = 'POST';
-        $url = $this->getUrl();
-        $body = $this->buildRequestBody($request);
-        $headers = $this->buildRequestHeaders($name, $request, $body);
-        $debug = $this->getConfig('debug');
-        $httpHandler = $this->getConfig('httpHandler');
-        $httpOptions = $this->getConfig('httpOptions');
-
-        if ($debug !== false) {
-            $this->debugRequest($url, $headers, $body);
-        }
-
-        /**
-         * GENERATE Signature
-         * @url https://developer.ebay.com/develop/guides/digital-signatures-for-apis
-         */
         if (isset($this->config['signatureJson']) && $method === 'POST') {
             if (
                 // All methods in the Finances API
@@ -194,6 +173,33 @@ abstract class BaseService
                 $signature = new Signature($this->config['signatureJson']);
                 $headers = $signature->generateSignatureHeaders($headers, $url, $method, $body);
             }
+        }
+        return $headers;
+    }
+
+    /**
+     * Sends an asynchronous API request.
+     *
+     * @param string $name The name of the operation.
+     * @param \DTS\eBaySDK\Types\BaseType $request Request object containing the request information.
+     * @param string $responseClass The name of the PHP class that will be created from the XML response.
+     *
+     * @return \GuzzleHttp\Promise\PromiseInterface A promise that will be resolved with an object created from the XML response.
+     */
+    protected function callOperationAsync($name, \DTS\eBaySDK\Types\BaseType $request, $responseClass)
+    {
+        $method = 'POST';
+        $url = $this->getUrl();
+        $body = $this->buildRequestBody($request);
+        $headers = $this->buildRequestHeaders($name, $request, $body);
+        $debug = $this->getConfig('debug');
+        $httpHandler = $this->getConfig('httpHandler');
+        $httpOptions = $this->getConfig('httpOptions');
+
+        $headers = $this->generateSignature($headers, $url, $method, $body, $responseClass);
+
+        if ($debug !== false) {
+            $this->debugRequest($url, $headers, $body);
         }
 
         $request = new Request($method, $url, $headers, $body);

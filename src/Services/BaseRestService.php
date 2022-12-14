@@ -129,6 +129,38 @@ abstract class BaseRestService
     }
 
     /**
+     * GENERATE Signature
+     * @url https://developer.ebay.com/develop/guides/digital-signatures-for-apis
+     */
+    private function generateSignature($headers, $url, $method, $body, $responseClass)
+    {
+        if (isset($this->config['signatureJson']) && $method === 'POST') {
+            if (
+                // All methods in the Finances API
+                strpos($url, '/sell/finances/') !== false ||
+                // issueRefund in the Fulfillment API
+                strpos($responseClass, 'IssueRefundRestResponse') !== false ||
+                // Issue return refund
+                strpos($responseClass, 'IssueReturnRefundRestResponse') !== false ||
+                // Issue Inquiry Refund
+                strpos($responseClass, 'IssueInquiryRefundRestResponse') !== false ||
+                // Issue case refund
+                strpos($responseClass, 'IssueCaseRefundRestResponse') !== false ||
+                // Process Return Request
+                strpos($responseClass, 'ProcessReturnRequestRestResponse') !== false ||
+                // Approve Cancellation Request
+                strpos($responseClass, 'ApproveCancellationRequestRestResponse') !== false ||
+                // Get Account Trading API
+                strpos($responseClass, 'GetAccountResponseType') !== false
+            ) {
+                $signature = new Signature($this->config['signatureJson']);
+                $headers = $signature->generateSignatureHeaders($headers, $url, $method, $body);
+            }
+        }
+        return $headers;
+    }
+
+    /**
      * Sends an asynchronous API request.
      *
      * @param string $name The name of the operation.
@@ -164,36 +196,10 @@ abstract class BaseRestService
         $httpHandler = $this->getConfig('httpHandler');
         $httpOptions = $this->getConfig('httpOptions');
 
+        $headers = $this->generateSignature($headers, $url, $method, $body, $responseClass);
+
         if ($debug !== false) {
             $this->debugRequest($url, $headers, $body);
-        }
-
-        /**
-         * GENERATE Signature
-         * @url https://developer.ebay.com/develop/guides/digital-signatures-for-apis
-         */
-        if (isset($this->config['signatureJson']) && $method === 'POST') {
-            if (
-                // All methods in the Finances API
-                strpos($url, '/sell/finances/') !== false ||
-                // issueRefund in the Fulfillment API
-                strpos($responseClass, 'IssueRefundRestResponse') !== false ||
-                // Issue return refund
-                strpos($responseClass, 'IssueReturnRefundRestResponse') !== false ||
-                // Issue Inquiry Refund
-                strpos($responseClass, 'IssueInquiryRefundRestResponse') !== false ||
-                // Issue case refund
-                strpos($responseClass, 'IssueCaseRefundRestResponse') !== false ||
-                // Process Return Request
-                strpos($responseClass, 'ProcessReturnRequestRestResponse') !== false ||
-                // Approve Cancellation Request
-                strpos($responseClass, 'ApproveCancellationRequestRestResponse') !== false ||
-                // Get Account Trading API
-                strpos($responseClass, 'GetAccountResponseType') !== false
-            ) {
-                $signature = new Signature($this->config['signatureJson']);
-                $headers = $signature->generateSignatureHeaders($headers, $url, $method, $body);
-            }
         }
 
         $request = new Request($method, $url, $headers, $body);
