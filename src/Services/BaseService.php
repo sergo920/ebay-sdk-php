@@ -5,6 +5,7 @@ use DTS\eBaySDK\Parser\XmlParser;
 use DTS\eBaySDK\ConfigurationResolver;
 use DTS\eBaySDK\Credentials\CredentialsProvider;
 use \DTS\eBaySDK as Functions;
+use Ebay\DigitalSignature\Signature;
 use GuzzleHttp\Psr7\Request;
 use Psr\Http\Message\ResponseInterface;
 
@@ -85,6 +86,10 @@ abstract class BaseService
                 'fn'      => 'DTS\eBaySDK\applyDebug',
                 'default' => false
             ],
+            'signatureJson' => [
+                'valid' => ['string'],
+                'default' => null
+            ],
             'httpHandler' => [
                 'valid'   => ['callable'],
                 'default' => 'DTS\eBaySDK\defaultHttpHandler'
@@ -151,6 +156,7 @@ abstract class BaseService
      */
     protected function callOperationAsync($name, \DTS\eBaySDK\Types\BaseType $request, $responseClass)
     {
+        $method = 'POST';
         $url = $this->getUrl();
         $body = $this->buildRequestBody($request);
         $headers = $this->buildRequestHeaders($name, $request, $body);
@@ -162,7 +168,35 @@ abstract class BaseService
             $this->debugRequest($url, $headers, $body);
         }
 
-        $request = new Request('POST', $url, $headers, $body);
+        /**
+         * GENERATE Signature
+         * @url https://developer.ebay.com/develop/guides/digital-signatures-for-apis
+         */
+        if (isset($this->config['signatureJson']) && $method === 'POST') {
+            if (
+                // All methods in the Finances API
+                strpos($url, '/sell/finances/') !== false ||
+                // issueRefund in the Fulfillment API
+                strpos($responseClass, 'IssueRefundRestResponse') !== false ||
+                // Issue return refund
+                strpos($responseClass, 'IssueReturnRefundRestResponse') !== false ||
+                // Issue Inquiry Refund
+                strpos($responseClass, 'IssueInquiryRefundRestResponse') !== false ||
+                // Issue case refund
+                strpos($responseClass, 'IssueCaseRefundRestResponse') !== false ||
+                // Process Return Request
+                strpos($responseClass, 'ProcessReturnRequestRestResponse') !== false ||
+                // Approve Cancellation Request
+                strpos($responseClass, 'ApproveCancellationRequestRestResponse') !== false ||
+                // Get Account Trading API
+                strpos($responseClass, 'GetAccountResponseType') !== false
+            ) {
+                $signature = new Signature($this->config['signatureJson']);
+                $headers = $signature->generateSignatureHeaders($headers, $url, $method, $body);
+            }
+        }
+
+        $request = new Request($method, $url, $headers, $body);
 
         return $httpHandler($request, $httpOptions)->then(
             function (ResponseInterface $res) use ($debug, $responseClass) {
