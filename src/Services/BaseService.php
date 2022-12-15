@@ -90,6 +90,10 @@ abstract class BaseService
                 'valid' => ['string'],
                 'default' => null
             ],
+            'validateSignature' => [
+                'valid'   => ['bool'],
+                'default' => false
+            ],
             'httpHandler' => [
                 'valid'   => ['callable'],
                 'default' => 'DTS\eBaySDK\defaultHttpHandler'
@@ -151,7 +155,8 @@ abstract class BaseService
      */
     private function generateSignature($headers, $url, $method, $body, $responseClass)
     {
-        if (isset($this->config['signatureJson']) && $method === 'POST') {
+        $validate = isset($this->config['validateSignature']) ? $this->config['validateSignature'] : false;
+        if ($validate && isset($this->config['signatureJson']) && $method === 'POST') {
             if (
                 // All methods in the Finances API
                 strpos($url, '/sell/finances/') !== false ||
