@@ -5,6 +5,7 @@ use DTS\eBaySDK\Parser\JsonParser;
 use DTS\eBaySDK\ConfigurationResolver;
 use DTS\eBaySDK\UriResolver;
 use \DTS\eBaySDK as Functions;
+use Ebay\DigitalSignature\Signature;
 use GuzzleHttp\Psr7\Request;
 use Psr\Http\Message\ResponseInterface;
 
@@ -80,6 +81,10 @@ abstract class BaseRestService
                     'http_errors' => false
                 ]
             ],
+            'signatureJson' => [
+                'valid' => ['string'],
+                'default' => null
+            ],
             'requestLanguage' => [
                 'valid' => ['string']
             ],
@@ -124,6 +129,38 @@ abstract class BaseRestService
     }
 
     /**
+     * GENERATE Signature
+     * @url https://developer.ebay.com/develop/guides/digital-signatures-for-apis
+     */
+    private function generateSignature($headers, $url, $method, $body, $responseClass)
+    {
+        if (isset($this->config['signatureJson']) && $method === 'POST') {
+            if (
+                // All methods in the Finances API
+                strpos($url, '/sell/finances/') !== false ||
+                // issueRefund in the Fulfillment API
+                strpos($responseClass, 'IssueRefundRestResponse') !== false ||
+                // Issue return refund
+                strpos($responseClass, 'IssueReturnRefundRestResponse') !== false ||
+                // Issue Inquiry Refund
+                strpos($responseClass, 'IssueInquiryRefundRestResponse') !== false ||
+                // Issue case refund
+                strpos($responseClass, 'IssueCaseRefundRestResponse') !== false ||
+                // Process Return Request
+                strpos($responseClass, 'ProcessReturnRequestRestResponse') !== false ||
+                // Approve Cancellation Request
+                strpos($responseClass, 'ApproveCancellationRequestRestResponse') !== false ||
+                // Get Account Trading API
+                strpos($responseClass, 'GetAccountResponseType') !== false
+            ) {
+                $signature = new Signature($this->config['signatureJson']);
+                $headers = $signature->generateSignatureHeaders($headers, $url, $method, $body);
+            }
+        }
+        return $headers;
+    }
+
+    /**
      * Sends an asynchronous API request.
      *
      * @param string $name The name of the operation.
@@ -158,6 +195,8 @@ abstract class BaseRestService
         $debug = $this->getConfig('debug');
         $httpHandler = $this->getConfig('httpHandler');
         $httpOptions = $this->getConfig('httpOptions');
+
+        $headers = $this->generateSignature($headers, $url, $method, $body, $responseClass);
 
         if ($debug !== false) {
             $this->debugRequest($url, $headers, $body);
@@ -252,7 +291,7 @@ abstract class BaseRestService
      * @param string $url API endpoint.
      * @param array $headers Associative array of HTTP headers.
      * @param string $body The JSON body of the request.
-     */
+      */
     private function debugRequest($url, array $headers, $body)
     {
         $str = $url.PHP_EOL;
@@ -271,7 +310,7 @@ abstract class BaseRestService
      * Sends a debug string of the response details.
      *
      * @param string $body The JSON body of the response.
-     */
+      */
     private function debugResponse($body)
     {
         $this->debug($body);
