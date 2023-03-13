@@ -51,7 +51,7 @@ class ShoppingBaseService extends \DTS\eBaySDK\Services\BaseService
      */
     public function __construct(array $config)
     {
-        parent::__construct('http://open.api.ebay.com/shopping', 'http://open.api.sandbox.ebay.com/shopping', $config);
+        parent::__construct('https://open.api.ebay.com/shopping', 'https://open.api.sandbox.ebay.com/shopping', $config);
     }
 
     /**
