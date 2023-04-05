@@ -151,7 +151,9 @@ abstract class BaseRestService
                 // Approve Cancellation Request
                 strpos($responseClass, 'ApproveCancellationRequestRestResponse') !== false ||
                 // Get Account Trading API
-                strpos($responseClass, 'GetAccountResponseType') !== false
+                strpos($responseClass, 'GetAccountResponseType') !== false ||
+                // submit cancellation request
+                strpos($responseClass, 'SubmitCancellationRequestRestResponse') !== false
             ) {
                 $signature = new Signature($this->config['signatureJson']);
                 $headers = $signature->generateSignatureHeaders($headers, $url, $method, $body);
