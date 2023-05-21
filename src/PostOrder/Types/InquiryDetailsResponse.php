@@ -41,6 +41,12 @@ class InquiryDetailsResponse extends \DTS\eBaySDK\Types\BaseType
             'attribute' => false,
             'elementName' => 'claimAmount'
         ],
+        'creationReason' => [
+            'type' => 'string',
+            'repeatable' => false,
+            'attribute' => false,
+            'elementName' => 'creationReason'
+        ],
         'extTransactionId' => [
             'type' => 'string',
             'repeatable' => false,
