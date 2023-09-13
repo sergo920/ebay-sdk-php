@@ -12,7 +12,7 @@ namespace DTS\eBaySDK\Trading\Types;
 
 /**
  *
- * @property \DTS\eBaySDK\Trading\Types\NameValueListType[] $NameValueList
+ * @property \DTS\eBaySDK\Trading\Types\ConditionDescriptorType[] $ConditionDescriptor
  */
 class ConditionDescriptorsArrayType extends \DTS\eBaySDK\Types\BaseType
 {
