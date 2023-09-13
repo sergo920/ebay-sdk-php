@@ -85,6 +85,7 @@ namespace DTS\eBaySDK\Trading\Types;
  * @property integer $LeadCount
  * @property integer $NewLeadCount
  * @property \DTS\eBaySDK\Trading\Types\NameValueListArrayType $ItemSpecifics
+ * @property \DTS\eBaySDK\Trading\Types\ConditionDescriptorsArrayType $ConditionDescriptors
  * @property \DTS\eBaySDK\Trading\Types\AmountType $ClassifiedAdPayPerLeadFee
  * @property \DTS\eBaySDK\Trading\Types\BuyerProtectionDetailsType $ApplyBuyerProtection
  * @property \DTS\eBaySDK\Trading\Enums\ListingSubtypeCodeType $ListingSubtype2
@@ -578,6 +579,12 @@ class ItemType extends \DTS\eBaySDK\Types\BaseType
             'repeatable' => false,
             'attribute' => false,
             'elementName' => 'NewLeadCount'
+        ],
+        'ConditionDescriptors' => [
+            'type' => 'DTS\eBaySDK\Trading\Types\ConditionDescriptorsArrayType',
+            'repeatable' => false,
+            'attribute' => false,
+            'elementName' => 'ConditionDescriptors'
         ],
         'ItemSpecifics' => [
             'type' => 'DTS\eBaySDK\Trading\Types\NameValueListArrayType',
