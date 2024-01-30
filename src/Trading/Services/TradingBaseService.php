@@ -66,6 +66,9 @@ class TradingBaseService extends \DTS\eBaySDK\Services\BaseService
                 'default' => \DTS\eBaySDK\Trading\Services\TradingService::API_VERSION,
                 'required' => true
             ],
+            'catalogEnabled' => [
+                'valid' => ['int']
+            ],
             'authorization' => [
                 'valid' => ['string']
             ],
