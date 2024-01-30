@@ -190,6 +190,30 @@ abstract class BaseService
     {
         $method = 'POST';
         $url = $this->getUrl();
+
+        if ($this->getConfig('catalogEnabled')) {
+            if (
+                $request instanceof \DTS\eBaySDK\Trading\Types\ReviseFixedPriceItemRequestType ||
+                $request instanceof \DTS\eBaySDK\Trading\Types\ReviseItemRequestType ||
+                $request instanceof \DTS\eBaySDK\Trading\Types\ReviseInventoryStatusRequestType
+            ) {
+                if ($request instanceof \DTS\eBaySDK\Trading\Types\ReviseInventoryStatusRequestType) {
+                    foreach ($request->InventoryStatus as $index => $invStatus) {
+                        if (isset($invStatus->Quantity)) unset($request->InventoryStatus[$index]->Quantity);
+                    }
+                } else if (isset($request->Item)) {
+                    if (isset($request->Item->Quantity)) unset($request->Item->Quantity);
+                    if (isset($request->Item->Variations->Variation[0])) {
+                        foreach ($request->Item->Variations->Variation as $index => $variationType) {
+                            if (isset($request->Item->Variations->Variation[$index]->Quantity)) {
+                                unset($request->Item->Variations->Variation[$index]->Quantity);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
         $body = $this->buildRequestBody($request);
         $headers = $this->buildRequestHeaders($name, $request, $body);
         $debug = $this->getConfig('debug');
