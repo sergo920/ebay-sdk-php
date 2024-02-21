@@ -15,6 +15,7 @@ namespace DTS\eBaySDK\Browse\Types;
  * @property \DTS\eBaySDK\Browse\Types\Image[] $additionalImages
  * @property integer $bidCount
  * @property string[] $buyingOptions
+ * @property string[] $leafCategoryIds
  * @property \DTS\eBaySDK\Browse\Types\Category[] $categories
  * @property string $condition
  * @property string $conditionId
@@ -61,6 +62,12 @@ class ItemSummary extends \DTS\eBaySDK\Types\BaseType
             'repeatable' => true,
             'attribute' => false,
             'elementName' => 'buyingOptions'
+        ],
+        'leafCategoryIds' => [
+            'type' => 'string',
+            'repeatable' => true,
+            'attribute' => false,
+            'elementName' => 'leafCategoryIds'
         ],
         'categories' => [
             'type' => 'DTS\eBaySDK\Browse\Types\Category',
