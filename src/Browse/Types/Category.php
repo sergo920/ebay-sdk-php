@@ -13,6 +13,7 @@ namespace DTS\eBaySDK\Browse\Types;
 /**
  *
  * @property string $categoryId
+ * @property string $categoryName
  */
 class Category extends \DTS\eBaySDK\Types\BaseType
 {
@@ -25,6 +26,12 @@ class Category extends \DTS\eBaySDK\Types\BaseType
             'repeatable' => false,
             'attribute' => false,
             'elementName' => 'categoryId'
+        ],
+        'categoryName' => [
+            'type' => 'string',
+            'repeatable' => false,
+            'attribute' => false,
+            'elementName' => 'categoryName'
         ]
     ];
 
