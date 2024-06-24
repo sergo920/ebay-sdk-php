@@ -12,8 +12,6 @@ namespace DTS\eBaySDK\Trading\Types;
 
 /**
  *
- * @property \DTS\eBaySDK\Trading\Types\SMSSubscriptionType $SMSSubscription
- * @property \DTS\eBaySDK\Trading\Types\SummaryEventScheduleType[] $SummarySchedule
  * @property string $ExternalUserData
  */
 class NotificationUserDataType extends \DTS\eBaySDK\Types\BaseType
@@ -22,18 +20,6 @@ class NotificationUserDataType extends \DTS\eBaySDK\Types\BaseType
      * @var array Properties belonging to objects of this class.
      */
     private static $propertyTypes = [
-        'SMSSubscription' => [
-            'type' => 'DTS\eBaySDK\Trading\Types\SMSSubscriptionType',
-            'repeatable' => false,
-            'attribute' => false,
-            'elementName' => 'SMSSubscription'
-        ],
-        'SummarySchedule' => [
-            'type' => 'DTS\eBaySDK\Trading\Types\SummaryEventScheduleType',
-            'repeatable' => true,
-            'attribute' => false,
-            'elementName' => 'SummarySchedule'
-        ],
         'ExternalUserData' => [
             'type' => 'string',
             'repeatable' => false,
