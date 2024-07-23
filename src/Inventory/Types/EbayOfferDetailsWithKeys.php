@@ -19,6 +19,7 @@ namespace DTS\eBaySDK\Inventory\Types;
  * @property \DTS\eBaySDK\Inventory\Types\ListingPolicies $listingPolicies
  * @property \DTS\eBaySDK\Inventory\Enums\MarketplaceEnum $marketplaceId
  * @property string $merchantLocationKey
+ * @property string $listingDuration
  * @property \DTS\eBaySDK\Inventory\Types\PricingSummary $pricingSummary
  * @property integer $quantityLimitPerBuyer
  * @property string $sku
@@ -42,6 +43,12 @@ class EbayOfferDetailsWithKeys extends \DTS\eBaySDK\Types\BaseType
             'repeatable' => false,
             'attribute' => false,
             'elementName' => 'categoryId'
+        ],
+        'listingDuration' => [
+            'type' => 'string',
+            'repeatable' => false,
+            'attribute' => false,
+            'elementName' => 'listingDuration'
         ],
         'format' => [
             'type' => 'string',
