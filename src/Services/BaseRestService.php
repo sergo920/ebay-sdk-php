@@ -211,6 +211,7 @@ abstract class BaseRestService
                 $json = $res->getBody()->getContents();
 
                 if ($debug !== false) {
+                    echo "headers ".json_encode($res->getHeaders()).' <br>';
                     $this->debugResponse($json);
                 }
 
