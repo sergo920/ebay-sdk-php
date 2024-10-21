@@ -124,6 +124,7 @@ namespace DTS\eBaySDK\Trading\Types;
  * @property \DTS\eBaySDK\Trading\Types\AmountType $CeilingPrice
  * @property boolean $IsIntermediatedShippingEligible
  * @property \DTS\eBaySDK\Trading\Types\UnitInfoType $UnitInfo
+ * @property \DTS\eBaySDK\Trading\Types\RegulatoryType $Regulatory
  * @property integer $RelistParentID
  * @property string $ConditionDefinition
  * @property boolean $HideFromSearch
@@ -339,6 +340,12 @@ class ItemType extends \DTS\eBaySDK\Types\BaseType
             'repeatable' => false,
             'attribute' => false,
             'elementName' => 'ReservePrice'
+        ],
+        'Regulatory' => [
+            'type' => 'DTS\eBaySDK\Trading\Types\RegulatoryType',
+            'repeatable' => false,
+            'attribute' => false,
+            'elementName' => 'Regulatory'
         ],
         'ReviseStatus' => [
             'type' => 'DTS\eBaySDK\Trading\Types\ReviseStatusType',
