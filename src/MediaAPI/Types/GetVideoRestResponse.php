@@ -37,13 +37,13 @@ class GetVideoRestResponse extends \DTS\eBaySDK\Types\BaseType
      */
     private static $propertyTypes = [
         'playLists' => [
-            'type' => '\DTS\eBaySDK\MediaAPI\Types\Play',
+            'type' => 'DTS\eBaySDK\MediaAPI\Types\Play',
             'repeatable' => true,
             'attribute' => false,
             'elementName' => 'play'
         ],
         'thumbnail' => [
-            'type' => '\DTS\eBaySDK\MediaAPI\Types\Image',
+            'type' => 'DTS\eBaySDK\MediaAPI\Types\Image',
             'repeatable' => false,
             'attribute' => false,
             'elementName' => 'thumbnail'

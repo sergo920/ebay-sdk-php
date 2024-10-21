@@ -12,6 +12,9 @@ namespace DTS\eBaySDK\Trading\Types;
 
 /**
  * @property \DTS\eBaySDK\Trading\Types\HazmatType $Hazmat
+ * @property \DTS\eBaySDK\Trading\Types\DocumentsType $Documents
+ * @property \DTS\eBaySDK\Trading\Types\ResponsiblePersonsType $ResponsiblePersons
+ * @property \DTS\eBaySDK\Trading\Types\ManufacturerType $Manufacturer
  * @property \DTS\eBaySDK\Trading\Types\EnergyEfficiencyLabelType $EnergyEfficiencyLabel
  */
 class RegulatoryType extends \DTS\eBaySDK\Types\BaseType
@@ -22,7 +25,7 @@ class RegulatoryType extends \DTS\eBaySDK\Types\BaseType
     private static $propertyTypes = [
         'Manufacturer' => [
             'type' => 'DTS\eBaySDK\Trading\Types\ManufacturerType',
-            'repeatable' => true,
+            'repeatable' => false,
             'attribute' => false,
             'elementName' => 'Manufacturer'
         ],
@@ -38,6 +41,18 @@ class RegulatoryType extends \DTS\eBaySDK\Types\BaseType
             'attribute' => false,
             'elementName' => 'Hazmat'
         ],
+        'Documents' => [
+            'type' => 'DTS\eBaySDK\Trading\Types\DocumentsType',
+            'repeatable' => false,
+            'attribute' => false,
+            'elementName' => 'Documents'
+        ],
+        'ResponsiblePersons' => [
+            'type' => 'DTS\eBaySDK\Trading\Types\ResponsiblePersonsType',
+            'repeatable' => false,
+            'attribute' => false,
+            'elementName' => 'ResponsiblePersons'
+        ]
     ];
 
     /**
