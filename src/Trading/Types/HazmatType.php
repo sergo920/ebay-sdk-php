@@ -11,6 +11,7 @@
 namespace DTS\eBaySDK\Trading\Types;
 
 /**
+ * @property \DTS\eBaySDK\Trading\Types\StatementsType $Statements
  * @property \DTS\eBaySDK\Trading\Types\PictogramsType $Pictograms
  * @property string $SignalWord
  * @property string $Component
@@ -38,6 +39,12 @@ class HazmatType extends \DTS\eBaySDK\Types\BaseType
             'repeatable' => false,
             'attribute' => false,
             'elementName' => 'Pictograms'
+        ],
+        'Statements' => [
+            'type' => 'DTS\eBaySDK\Trading\Types\StatementsType',
+            'repeatable' => false,
+            'attribute' => false,
+            'elementName' => 'Statements'
         ]
     ];
 
