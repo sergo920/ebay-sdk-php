@@ -11,6 +11,7 @@
 namespace DTS\eBaySDK\Trading\Types;
 
 /**
+ * @property \DTS\eBaySDK\Trading\Types\HazmatType $Hazmat
  * @property \DTS\eBaySDK\Trading\Types\EnergyEfficiencyLabelType $EnergyEfficiencyLabel
  */
 class RegulatoryType extends \DTS\eBaySDK\Types\BaseType
@@ -30,6 +31,12 @@ class RegulatoryType extends \DTS\eBaySDK\Types\BaseType
             'repeatable' => false,
             'attribute' => false,
             'elementName' => 'EnergyEfficiencyLabel'
+        ],
+        'Hazmat' => [
+            'type' => 'DTS\eBaySDK\Trading\Types\HazmatType',
+            'repeatable' => false,
+            'attribute' => false,
+            'elementName' => 'Hazmat'
         ],
     ];
 
