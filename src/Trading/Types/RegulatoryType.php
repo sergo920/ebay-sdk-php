@@ -11,6 +11,8 @@
 namespace DTS\eBaySDK\Trading\Types;
 
 /**
+ * @property double $RepairScore
+ * @property \DTS\eBaySDK\Trading\Types\ProductSafetyType $ProductSafety
  * @property \DTS\eBaySDK\Trading\Types\HazmatType $Hazmat
  * @property \DTS\eBaySDK\Trading\Types\DocumentsType $Documents
  * @property \DTS\eBaySDK\Trading\Types\ResponsiblePersonsType $ResponsiblePersons
@@ -47,11 +49,23 @@ class RegulatoryType extends \DTS\eBaySDK\Types\BaseType
             'attribute' => false,
             'elementName' => 'Documents'
         ],
+        'ProductSafety' => [
+            'type' => 'DTS\eBaySDK\Trading\Types\ProductSafetyType',
+            'repeatable' => false,
+            'attribute' => false,
+            'elementName' => 'ProductSafety'
+        ],
         'ResponsiblePersons' => [
             'type' => 'DTS\eBaySDK\Trading\Types\ResponsiblePersonsType',
             'repeatable' => false,
             'attribute' => false,
             'elementName' => 'ResponsiblePersons'
+        ],
+        'RepairScore' => [
+            'type' => 'double',
+            'repeatable' => false,
+            'attribute' => false,
+            'elementName' => 'RepairScore'
         ]
     ];
 
