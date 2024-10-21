@@ -15,7 +15,7 @@ namespace DTS\eBaySDK\Trading\Types;
  * @property string $SignalWord
  * @property string $Component
  */
-class EnergyEfficiencyLabelType extends \DTS\eBaySDK\Types\BaseType
+class HazmatType extends \DTS\eBaySDK\Types\BaseType
 {
     /**
      * @var array Properties belonging to objects of this class.
