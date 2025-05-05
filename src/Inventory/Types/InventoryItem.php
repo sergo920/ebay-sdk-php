@@ -17,6 +17,7 @@ namespace DTS\eBaySDK\Inventory\Types;
  * @property string $conditionDescription
  * @property \DTS\eBaySDK\Inventory\Types\PackageWeightAndSize $packageWeightAndSize
  * @property \DTS\eBaySDK\Inventory\Types\Product $product
+ * @property \DTS\eBaySDK\Inventory\Types\ConditionDescriptor[] $conditionDescriptors
  * @property string $sku
  * @property string[] $groupIds
  */
@@ -31,6 +32,12 @@ class InventoryItem extends \DTS\eBaySDK\Types\BaseType
             'repeatable' => false,
             'attribute' => false,
             'elementName' => 'availability'
+        ],
+        'conditionDescriptors' => [
+            'type' => 'DTS\eBaySDK\Inventory\Types\ConditionDescriptor',
+            'repeatable' => true,
+            'attribute' => false,
+            'elementName' => 'conditionDescriptors'
         ],
         'condition' => [
             'type' => 'string',
